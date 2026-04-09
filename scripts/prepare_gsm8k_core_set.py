@@ -1,7 +1,8 @@
+#!/usr/bin/env python
 """GSM8K 核心实验集抽样与预处理脚本。
 
 设计目标：
-1. 直接对接 `datasets.save_to_disk()` 保存的 GSM8K 目录
+1. 直接对接服务器上 `datasets.save_to_disk()` 保存的 GSM8K 目录
 2. 从官方 train split 中稳定抽取核心实验训练集/开发集
 3. 产出后续 Verifier / MCTS / Step-DPO / Step-GRPO 都能复用的 JSONL
 """
@@ -225,6 +226,7 @@ def build_summary(
 
 
 def run_self_check() -> int:
+    """轻量自检，避免服务器同步前逻辑出错。"""
 
     example = {
         "question": "If John has 40 apples and gives away 8, how many are left?",

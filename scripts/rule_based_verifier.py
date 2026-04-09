@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """GSM8K 规则校验器。
 
 这版先服务于阶段 1：
@@ -5,6 +6,7 @@
 2. 从 GSM8K 标注的 `#### final_answer` 中抽取标准答案
 3. 对数值答案做归一化与严格比较
 
+脚本既可以被其他模块直接 import，也可以当作 CLI 单独运行。
 """
 
 from __future__ import annotations
@@ -26,6 +28,7 @@ ANSWER_TAG_PATTERN = re.compile(
 
 GSM8K_REFERENCE_PATTERN = re.compile(r"####\s*(?P<answer>.+?)\s*$", flags=re.MULTILINE)
 
+# 这个模式尽量宽松一些，便于从 “72 apples” 或 “$1,234.50” 里抽到最终数值。
 NUMBER_PATTERN = re.compile(
     r"""
     (?P<number>
