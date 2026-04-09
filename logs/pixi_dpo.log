@@ -1,0 +1,11 @@
+设置成功
+注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证
+Error:   × Failed to update PyPI packages for environment 'dpo'
+  ├─▶ Failed to prepare distributions
+  ├─▶ Failed to download `nvidia-cufft-cu12==11.2.1.3`
+  ├─▶ Failed to write to the distribution cache
+  ├─▶ error decoding response body
+  ├─▶ request or response body error
+  ├─▶ error reading a body from connection
+  ╰─▶ end of file before message length reached
+

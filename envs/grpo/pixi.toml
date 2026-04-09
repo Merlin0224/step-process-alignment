@@ -1,0 +1,38 @@
+[workspace]
+name = "step-level-reasoning-alignment-grpo"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+conda-pypi-map = { conda-forge = "empty-conda-pypi-map.json" }
+
+[pypi-options]
+index-url = "https://pypi.org/simple"
+extra-index-urls = ["https://download.pytorch.org/whl/cu124"]
+index-strategy = "unsafe-first-match"
+
+[environments]
+grpo = { features = ["grpo"], no-default-feature = true, solve-group = "grpo" }
+
+[feature.grpo.dependencies]
+python = "3.10.*"
+git = ">=2.45,<3"
+cmake = ">=3.30,<4"
+ninja = ">=1.12,<2"
+pkg-config = ">=0.29,<1"
+
+[feature.grpo.pypi-dependencies]
+torch = "==2.6.0"
+torchvision = "==0.21.0"
+torchaudio = "==2.6.0"
+transformers = ">=4.51,<4.52"
+datasets = "==3.2.0"
+accelerate = "==1.2.1"
+trl = "==0.15.2"
+vllm = "==0.8.3"
+tensordict = "==0.6.2"
+sentencepiece = ">=0.2,<0.3"
+safetensors = ">=0.5,<0.6"
+wandb = ">=0.19,<0.20"
+sympy = ">=1.13,<1.14"
+
+[feature.grpo.tasks]
+verify = "python ../../scripts/check_stack.py --env grpo"

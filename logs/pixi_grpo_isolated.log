@@ -1,0 +1,196 @@
+设置成功
+注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证
+DEBUG pixi_config: Loading config from /etc/pixi/config.toml
+DEBUG pixi_config: Loading config from /root/.config/pixi/config.toml
+DEBUG pixi_config: Loading config from /root/autodl-tmp/.pixi-home/config.toml
+DEBUG pixi_config: Loading config from /root/autodl-tmp/rl/envs/grpo/.pixi/config.toml
+DEBUG pixi_config: Loaded config from: /root/autodl-tmp/rl/envs/grpo/.pixi/config.toml
+DEBUG pixi_core::environment: verifying prefix location is unchanged, with prefix file: /root/autodl-tmp/rl/envs/grpo/.pixi/envs/conda-meta/pixi_env_prefix
+DEBUG pixi_utils::reqwest: Using mirrors: {Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("files.pythonhosted.org")), port: None, path: "/packages", query: None, fragment: None }: [Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.aliyun.com")), port: None, path: "/pypi/packages", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("pypi.tuna.tsinghua.edu.cn")), port: None, path: "/packages", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("files.pythonhosted.org")), port: None, path: "/packages", query: None, fragment: None }], Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("conda.anaconda.org")), port: None, path: "/conda-forge", query: None, fragment: None }: [Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.ustc.edu.cn")), port: None, path: "/anaconda/cloud/conda-forge", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.bfsu.edu.cn")), port: None, path: "/anaconda/cloud/conda-forge", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.tuna.tsinghua.edu.cn")), port: None, path: "/anaconda/cloud/conda-forge", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("conda.anaconda.org")), port: None, path: "/conda-forge", query: None, fragment: None }]}
+ INFO pixi_core::lock_file::update: the lock-file is up-to-date
+DEBUG pixi_core::lock_file::virtual_packages: Required virtual packages of environment 'grpo': __glibc >=2.17,<3.0.a0, __unix, __glibc >=2.17,<3.0.a0, __glibc >=2.28,<3.0.a0, __glibc >=2.17,<3.0.a0
+DEBUG pixi_core::lock_file::virtual_packages: Generic system virtual packages for env: 'grpo' : [__unix: __unix=0=0, __linux: __linux=5.15.0=0, __cuda: __cuda=12.8=0, __glibc: __glibc=2.35=0, __archspec: __archspec=1=icelake]
+DEBUG pixi_core::lock_file::virtual_packages: Required virtual package: __glibc >=2.17,<3.0.a0 matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Skipping virtual package: __unix as it's not in the accepted packages
+DEBUG pixi_core::lock_file::virtual_packages: Required virtual package: __glibc >=2.17,<3.0.a0 matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Required virtual package: __glibc >=2.28,<3.0.a0 matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Required virtual package: __glibc >=2.17,<3.0.a0 matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: accelerate-1.2.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: aiohappyeyeballs-2.6.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: aiohttp-3.13.5-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: aiosignal-1.4.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: airportsdata-20260315-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: annotated_doc-0.0.4-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: annotated_types-0.7.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: anyio-4.13.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: astor-0.8.1-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: async_timeout-5.0.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: attrs-26.1.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: blake3-1.0.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: cachetools-7.0.5-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: certifi-2026.2.25-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: charset_normalizer-3.4.7-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: click-8.3.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: cloudpickle-3.1.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: compressed_tensors-0.9.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: cuda_pathfinder-1.5.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: cupy_cuda12x-14.0.1-cp310-cp310-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: datasets-3.2.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: depyf-0.18.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: dill-0.3.8-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: diskcache-5.6.3-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: distro-1.9.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: dnspython-2.8.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: docker_pycreds-0.4.0-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: einops-0.8.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: email_validator-2.3.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: exceptiongroup-1.3.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: fastapi-0.135.3-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: fastapi_cli-0.0.24-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: fastapi_cloud_cli-0.16.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: fastar-0.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: filelock-3.25.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: frozenlist-1.8.0-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: fsspec-2024.9.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: gguf-0.10.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: gitdb-4.0.12-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: gitpython-3.1.46-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: h11-0.16.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: hf_xet-1.4.3-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: httpcore-1.0.9-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: httptools-0.7.1-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: httpx-0.28.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: huggingface_hub-1.9.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: idna-3.11-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: importlib_metadata-9.0.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: interegular-0.3.3-py37-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: jinja2-3.1.6-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: jiter-0.13.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: jsonschema-4.26.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: jsonschema_specifications-2025.9.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: lark-1.2.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: llguidance-0.7.30-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: llvmlite-0.44.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: lm_format_enforcer-0.10.12-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: markdown_it_py-4.0.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: mdurl-0.1.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: mistral_common-1.11.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: mpmath-1.3.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: msgpack-1.1.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: msgspec-0.20.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: multidict-6.7.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: multiprocess-0.70.16-py310-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nanobind-2.12.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nest_asyncio-1.6.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: networkx-3.4.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: numba-0.61.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: numpy-2.1.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: openai-2.30.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: opencv_python_headless-4.13.0.92-cp37-abi3-manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: orjson-3.11.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: outlines-0.1.11-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: outlines_core-0.1.26-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: packaging-26.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pandas-2.3.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: partial_json_parser-0.2.1.1.post7-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pillow-12.2.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: platformdirs-4.9.4-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: prometheus_client-0.24.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: prometheus_fastapi_instrumentator-7.1.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: propcache-0.4.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: py_cpuinfo-9.0.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pyarrow-23.0.1-cp310-cp310-manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pycountry-26.2.16-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pydantic-2.12.5-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pydantic_core-2.41.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pydantic_extra_types-2.11.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pydantic_settings-2.13.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pygments-2.20.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: python_dateutil-2.9.0.post0-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: python_dotenv-1.2.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: python_json_logger-4.1.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: python_multipart-0.0.24-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pytz-2026.1.post1-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: pyzmq-27.1.0-cp310-cp310-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: ray-2.54.1-cp310-cp310-manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: referencing-0.37.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: regex-2026.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: requests-2.33.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: rich-14.3.3-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: rich_toolkit-0.19.7-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: rignore-0.7.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: rpds_py-0.30.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: sentencepiece-0.2.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: sentry_sdk-2.57.0-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: setproctitle-1.3.7-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: setuptools-82.0.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: shellingham-1.5.4-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: six-1.17.0-py2.py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: smmap-5.0.3-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: sniffio-1.3.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: starlette-0.52.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: sympy-1.13.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: tensordict-0.6.2-cp310-cp310-manylinux1_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: tiktoken-0.12.0-cp310-cp310-manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: tomli-2.4.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: torch-2.6.0-cp310-cp310-manylinux1_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: torchaudio-2.6.0-cp310-cp310-manylinux1_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: torchvision-0.21.0-cp310-cp310-manylinux1_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: tqdm-4.67.3-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: transformers-5.5.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: triton-3.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: trl-0.15.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: typer-0.24.1-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: typing_extensions-4.15.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: typing_inspection-0.4.2-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: urllib3-2.6.3-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: uvicorn-0.44.0-py3-none-any.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: uvloop-0.22.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: vllm-0.8.3-cp38-abi3-manylinux1_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: wandb-0.19.11-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: watchfiles-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: websockets-16.0-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: xformers-0.0.29.post2-cp310-cp310-manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: xgrammar-0.1.17-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: xxhash-3.6.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: yarl-1.23.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl matches the system
+DEBUG pixi_core::lock_file::virtual_packages: Wheel: zipp-3.23.0-py3-none-any.whl matches the system
+DEBUG pixi_core::environment::conda_prefix: updating prefix for 'grpo'
+DEBUG pixi_utils::rlimit: Increased RLIMIT_NOFILE to 2048
+ INFO pixi_core::environment::conda_metadata: No update needed for the prefix file.
+DEBUG pixi_core::environment::conda_metadata: Verify history file exists: /root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/conda-meta/history
+DEBUG pixi_uv_context: uv keyring provider is disabled
+DEBUG pixi_utils::reqwest: Using mirrors: {Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("files.pythonhosted.org")), port: None, path: "/packages", query: None, fragment: None }: [Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.aliyun.com")), port: None, path: "/pypi/packages", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("pypi.tuna.tsinghua.edu.cn")), port: None, path: "/packages", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("files.pythonhosted.org")), port: None, path: "/packages", query: None, fragment: None }], Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("conda.anaconda.org")), port: None, path: "/conda-forge", query: None, fragment: None }: [Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.ustc.edu.cn")), port: None, path: "/anaconda/cloud/conda-forge", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.bfsu.edu.cn")), port: None, path: "/anaconda/cloud/conda-forge", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("mirrors.tuna.tsinghua.edu.cn")), port: None, path: "/anaconda/cloud/conda-forge", query: None, fragment: None }, Url { scheme: "https", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("conda.anaconda.org")), port: None, path: "/conda-forge", query: None, fragment: None }]}
+DEBUG pixi_install_pypi: using python interpreter: cpython-3.10.20-linux-x86_64-gnu from /root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo
+DEBUG pixi_install_pypi: Constructed site-packages with 0 packages
+DEBUG pixi_install_pypi: 0 of 160 required packages are considered installed and up-to-date
+DEBUG pixi_install_pypi: *installing* from remote because no version is cached: nvidia-cufft-cu12 11.2.1.3, llvmlite 0.44.0, nvidia-cusparse-cu12 12.3.1.170, scipy 1.15.3, numpy 2.1.3, ray 2.54.1, llguidance 0.7.30, pyarrow 23.0.1, cupy-cuda12x 14.0.1, fastapi-cloud-cli 0.16.1, vllm 0.8.3, nvidia-cublas-cu12 12.4.5.8, nvidia-cudnn-cu12 9.1.0.70, xformers 0.0.29.post2, triton 3.2.0, nvidia-nccl-cu12 2.21.5, torch 2.6.0, opencv-python-headless 4.13.0.92
+DEBUG pixi_install_pypi: *installing* cached version because cache is up-to-date: networkx, partial-json-parser, nvidia-cuda-cupti-cu12, interegular, markupsafe, wandb, tiktoken, fsspec, torchvision, annotated-doc, trl, openai, nest-asyncio, pyzmq, smmap, importlib-metadata, lark, tokenizers, rpds-py, dnspython, typer, blake3, airportsdata, sniffio, gguf, huggingface-hub, starlette, nanobind, sympy, py-cpuinfo, tensordict, setproctitle, python-dotenv, zipp, pyyaml, astor, markdown-it-py, nvidia-curand-cu12, pygments, outlines-core, compressed-tensors, datasets, pycountry, rignore, diskcache, email-validator, platformdirs, mistral-common, referencing, nvidia-nvtx-cu12, nvidia-cusparselt-cu12, psutil, lm-format-enforcer, hf-xet, aiohttp, cachetools, httpcore, jiter, nvidia-cusolver-cu12, idna, pydantic-extra-types, watchfiles, frozenlist, setuptools, fastar, pandas, xxhash, click, tomli, yarl, six, nvidia-cuda-nvrtc-cu12, httpx, transformers, numba, filelock, mdurl, rich-toolkit, gitpython, einops, fastapi, multiprocess, regex, jsonschema, python-multipart, orjson, h11, pydantic, typing-extensions, distro, torchaudio, pillow, protobuf, pytz, jinja2, safetensors, async-timeout, nvidia-nvjitlink-cu12, dill, certifi, propcache, aiosignal, outlines, urllib3, cloudpickle, nvidia-cuda-runtime-cu12, jsonschema-specifications, depyf, sentry-sdk, python-dateutil, msgspec, anyio, exceptiongroup, tqdm, charset-normalizer, multidict, fastapi-cli, mpmath, xgrammar, annotated-types, uvicorn, pydantic-settings, rich, pydantic-core, uvloop, prometheus-client, httptools, docker-pycreds, attrs, aiohappyeyeballs, prometheus-fastapi-instrumentator, websockets, accelerate, sentencepiece, msgpack, gitdb, python-json-logger, requests, packaging, cuda-pathfinder, typing-inspection, shellingham
+DEBUG pixi_core::activation: Running activation script for Named("grpo")
+DEBUG pixi_install_pypi: Stored credentials for https://pypi.org/simple: false
+ INFO pixi_install_pypi: Prepared 18 packages in 5m 38s
+ INFO pixi_install_pypi: Installed 160 packages in 279ms
+ INFO pixi_install_pypi: finished in 5m 38s
+ INFO pixi_core::lock_file::update: Installed environment 'grpo' in 338.988057811s
+DEBUG pixi_core::environment: Wrote environment file to: "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/conda-meta/pixi"
+The grpo environment has been installed.

@@ -1,0 +1,40 @@
+START repo=Qwen/Qwen2.5-3B out_dir=/root/autodl-tmp/models/Qwen/Qwen2.5-3B
+/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files:  50%|█████     | 6/12 [00:09<00:09,  1.65s/it]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/rl/logs/download_qwen25_3b_resume.py", line 10, in <module>
+    path = snapshot_download(
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/concurrent/futures/_base.py", line 621, in result_iterator
+    yield _result_or_cancel(fs.pop())
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/concurrent/futures/_base.py", line 319, in _result_or_cancel
+    return fut.result(timeout)
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 994, in hf_hub_download
+    return _hf_hub_download_to_local_dir(
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1304, in _hf_hub_download_to_local_dir
+    _download_to_tmp_and_move(
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1727, in _download_to_tmp_and_move
+    xet_get(
+  File "/root/autodl-tmp/rl/envs/grpo/.pixi/envs/grpo/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 633, in xet_get
+    download_files(
+RuntimeError: Data processing error: File reconstruction error: CAS Client Error: Request error: HTTP status client error (401 Unauthorized), domain: https://cas-server.xethub.hf.co/v1/reconstructions/d62ccca1d9208e85bfd7a452d2392968e991c001ec410394c638cba197a1396a
