@@ -1,0 +1,58 @@
+# 第一版 Step-DPO 训练配置
+# 目标：在 Qwen/Qwen2.5-3B base 上，使用阶段 2 生成的 step-level 偏好对做 LoRA DPO
+# 如果后续切换到 Qwen/Qwen2.5-3B-Instruct，请把 template 改成 qwen
+
+### model
+model_name_or_path: /root/autodl-tmp/models/Qwen/Qwen2.5-3B
+trust_remote_code: true
+
+### method
+stage: dpo
+do_train: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+pref_loss: sigmoid
+pref_beta: 0.1
+
+### dataset
+dataset: gsm8k_step_dpo_sharegpt_v1
+dataset_dir: /root/autodl-tmp/datasets/gsm8k/dpo
+template: default
+cutoff_len: 1536
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+val_size: 0.05
+
+### output
+output_dir: /root/autodl-tmp/rl/runs/llamafactory/qwen25_3b_step_dpo_lora_v1
+logging_steps: 10
+save_steps: 100
+eval_steps: 100
+plot_loss: true
+overwrite_output_dir: true
+save_total_limit: 2
+save_only_model: false
+report_to: tensorboard
+
+### train
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-6
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+max_grad_norm: 1.0
+bf16: true
+gradient_checkpointing: true
+ddp_timeout: 180000000
+
+### acceleration
+flash_attn: auto
+
+### eval
+eval_strategy: steps

@@ -1,0 +1,12 @@
+{
+  "gsm8k_step_dpo_sharegpt_v1": {
+    "file_name": "step_dpo_pairs_sharegpt.jsonl",
+    "ranking": true,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  }
+}

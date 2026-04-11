@@ -809,6 +809,99 @@ def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
+def append_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
+    """以追加模式写出 JSONL。"""
+
+    if not rows:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+        handle.flush()
+
+
+def load_existing_problem_ids(path: Path) -> set[str]:
+    """从已有输出 JSONL 中读取已完成的 problem_id。"""
+
+    if not path.exists():
+        return set()
+
+    problem_ids: set[str] = set()
+    with path.open("r", encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            stripped = line.strip()
+            if not stripped:
+                continue
+            record = json.loads(stripped)
+            if not isinstance(record, dict):
+                raise ValueError(f"输出 JSONL 第 {line_number} 行不是对象。")
+            problem_id = record.get("problem_id")
+            if isinstance(problem_id, str) and problem_id:
+                problem_ids.add(problem_id)
+    return problem_ids
+
+
+def write_summary_json(path: Path, summary: dict[str, Any]) -> None:
+    """写出 summary JSON。"""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def build_run_summary(
+    *,
+    args: argparse.Namespace,
+    summary_json: Path,
+    step_max_new_tokens: int,
+    rollout_max_new_tokens: int,
+    state_segmenter: ReasoningStateSegmenter,
+    input_problem_count: int,
+    skipped_existing_count: int,
+    newly_processed_count: int,
+    output_problem_count: int,
+    run_status: str,
+) -> dict[str, Any]:
+    """统一构建运行摘要，便于增量刷新与最终落盘共用。"""
+
+    return {
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "input_jsonl": str(args.input_jsonl),
+        "output_jsonl": str(args.output_jsonl),
+        "summary_json": str(summary_json),
+        "backend": args.backend,
+        "model": args.model if args.backend == "vllm" else None,
+        "input_problem_count": input_problem_count,
+        "skipped_existing_count": skipped_existing_count,
+        "newly_processed_count": newly_processed_count,
+        "output_problem_count": output_problem_count,
+        "run_status": run_status,
+        "config": {
+            "root_expansion_branches": args.root_expansion_branches,
+            "expansion_branches": args.expansion_branches,
+            "rollout_samples": args.rollout_samples,
+            "num_simulations": args.num_simulations,
+            "max_step_depth": args.max_step_depth,
+            "step_max_new_tokens": step_max_new_tokens,
+            "rollout_max_new_tokens": rollout_max_new_tokens,
+            "temperature": args.temperature,
+            "top_p": args.top_p,
+            "ucb_c": args.ucb_c,
+            "store_rollouts": args.store_rollouts,
+            "save_every": args.save_every,
+            "resume": args.resume,
+            "overwrite_output": args.overwrite_output,
+            "state_boundary": {
+                "max_step_chars": args.state_max_step_chars,
+                "max_step_tokens": args.state_max_step_tokens,
+                "regex_pattern": args.state_regex_pattern,
+                "state_tokenizer": state_segmenter.config.tokenizer_name_or_path,
+                "allow_regex_split": not args.disable_state_regex_split,
+            },
+        },
+    }
+
+
 async def run_self_check() -> int:
     """本地轻量自检。"""
 
@@ -855,6 +948,20 @@ async def run_self_check() -> int:
 
     q_values = [node["q_value"] for node in tree["nodes"] if node["q_value"] is not None]
     event_types = {event["event_type"] for event in tree["simulation_events"]}
+    tmp_dir = Path(__file__).resolve().parent / ".tmp_build_mcts_self_check"
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+    tmp_output = tmp_dir / "trees.jsonl"
+    try:
+        append_jsonl(tmp_output, [tree])
+        resumed_ids = load_existing_problem_ids(tmp_output)
+    finally:
+        if tmp_output.exists():
+            tmp_output.unlink()
+        if tmp_dir.exists():
+            try:
+                tmp_dir.rmdir()
+            except OSError:
+                pass
     checks = {
         "has_multiple_nodes": tree["statistics"]["node_count"] >= 4,
         "has_correct_prefix": any(value == 1.0 for value in q_values),
@@ -864,6 +971,7 @@ async def run_self_check() -> int:
         "has_expand_event": "expand_backup" in event_types,
         "has_visit_count": any(node["visit_count"] > 0 for node in tree["nodes"]),
         "has_terminal_node": any(node["is_terminal"] for node in tree["nodes"]),
+        "resume_can_find_problem_id": record["problem_id"] in resumed_ids,
     }
     print(json.dumps(tree, ensure_ascii=False, indent=2))
     print(json.dumps({"checks": checks}, ensure_ascii=False))
@@ -928,6 +1036,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--disable-state-regex-split", action="store_true")
     parser.add_argument("--max-problems", type=int, default=5)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--save-every", type=int, default=1, help="每处理多少道题就增量写盘一次。")
+    parser.add_argument("--resume", action="store_true", help="若输出 JSONL 已存在，则跳过其中已有的 problem_id。")
+    parser.add_argument("--overwrite-output", action="store_true", help="非 resume 模式下允许覆盖已有输出文件。")
     parser.add_argument("--store-rollouts", action="store_true")
     parser.add_argument("--self-check", action="store_true")
     return parser
@@ -939,10 +1050,16 @@ async def main_async(args: argparse.Namespace) -> int:
     if args.self_check:
         return await run_self_check()
 
+    if args.save_every <= 0:
+        raise ValueError("--save-every 必须是正整数。")
+    if args.resume and args.overwrite_output:
+        raise ValueError("--resume 与 --overwrite-output 不能同时启用。")
+
     random.seed(args.seed)
     rows = iter_jsonl(args.input_jsonl)
     if args.max_problems > 0:
         rows = rows[: args.max_problems]
+    input_problem_count = len(rows)
 
     backend = make_backend(args)
     state_segmenter = make_state_segmenter(args)
@@ -950,6 +1067,31 @@ async def main_async(args: argparse.Namespace) -> int:
     rollout_max_new_tokens = (
         args.rollout_max_new_tokens if args.rollout_max_new_tokens is not None else args.max_new_tokens
     )
+    summary_json = args.summary_json
+    if summary_json is None:
+        summary_json = args.output_jsonl.with_name(args.output_jsonl.stem + "_summary.json")
+
+    existing_problem_ids: set[str] = set()
+    if args.resume:
+        existing_problem_ids = load_existing_problem_ids(args.output_jsonl)
+    elif args.output_jsonl.exists():
+        if not args.overwrite_output:
+            raise FileExistsError(
+                f"输出文件已存在：{args.output_jsonl}。若要续跑请加 --resume；若要覆盖请加 --overwrite-output。"
+            )
+        args.output_jsonl.unlink()
+
+    skipped_existing_count = 0
+    if existing_problem_ids:
+        filtered_rows: list[dict[str, Any]] = []
+        for record in rows:
+            problem_id = record.get("problem_id")
+            if isinstance(problem_id, str) and problem_id in existing_problem_ids:
+                skipped_existing_count += 1
+                continue
+            filtered_rows.append(record)
+        rows = filtered_rows
+
     engine = StepValueMCTSEngine(
         backend=backend,
         root_expansion_branches=args.root_expansion_branches,
@@ -972,50 +1114,72 @@ async def main_async(args: argparse.Namespace) -> int:
         ucb_c=args.ucb_c,
     )
 
-    output_rows: list[dict[str, Any]] = []
+    pending_rows: list[dict[str, Any]] = []
+    newly_processed_count = 0
+    output_problem_count = len(existing_problem_ids)
     try:
         for record in rows:
             tree = await engine.build_problem_tree(record)
-            output_rows.append(tree)
+            pending_rows.append(tree)
+            newly_processed_count += 1
+
+            if len(pending_rows) >= args.save_every:
+                append_jsonl(args.output_jsonl, pending_rows)
+                output_problem_count += len(pending_rows)
+                pending_rows.clear()
+                running_summary = build_run_summary(
+                    args=args,
+                    summary_json=summary_json,
+                    step_max_new_tokens=step_max_new_tokens,
+                    rollout_max_new_tokens=rollout_max_new_tokens,
+                    state_segmenter=state_segmenter,
+                    input_problem_count=input_problem_count,
+                    skipped_existing_count=skipped_existing_count,
+                    newly_processed_count=newly_processed_count,
+                    output_problem_count=output_problem_count,
+                    run_status="running",
+                )
+                write_summary_json(summary_json, running_summary)
+    except Exception:
+        if pending_rows:
+            append_jsonl(args.output_jsonl, pending_rows)
+            output_problem_count += len(pending_rows)
+            pending_rows.clear()
+        failed_summary = build_run_summary(
+            args=args,
+            summary_json=summary_json,
+            step_max_new_tokens=step_max_new_tokens,
+            rollout_max_new_tokens=rollout_max_new_tokens,
+            state_segmenter=state_segmenter,
+            input_problem_count=input_problem_count,
+            skipped_existing_count=skipped_existing_count,
+            newly_processed_count=newly_processed_count,
+            output_problem_count=output_problem_count,
+            run_status="failed",
+        )
+        write_summary_json(summary_json, failed_summary)
+        raise
     finally:
         await backend.aclose()
 
-    write_jsonl(args.output_jsonl, output_rows)
+    if pending_rows:
+        append_jsonl(args.output_jsonl, pending_rows)
+        output_problem_count += len(pending_rows)
+        pending_rows.clear()
 
-    summary_json = args.summary_json
-    if summary_json is None:
-        summary_json = args.output_jsonl.with_name(args.output_jsonl.stem + "_summary.json")
-
-    summary = {
-        "created_at_utc": datetime.now(timezone.utc).isoformat(),
-        "input_jsonl": str(args.input_jsonl),
-        "output_jsonl": str(args.output_jsonl),
-        "backend": args.backend,
-        "model": args.model if args.backend == "vllm" else None,
-        "processed_problem_count": len(output_rows),
-        "config": {
-            "root_expansion_branches": args.root_expansion_branches,
-            "expansion_branches": args.expansion_branches,
-            "rollout_samples": args.rollout_samples,
-            "num_simulations": args.num_simulations,
-            "max_step_depth": args.max_step_depth,
-            "step_max_new_tokens": step_max_new_tokens,
-            "rollout_max_new_tokens": rollout_max_new_tokens,
-            "temperature": args.temperature,
-            "top_p": args.top_p,
-            "ucb_c": args.ucb_c,
-            "store_rollouts": args.store_rollouts,
-            "state_boundary": {
-                "max_step_chars": args.state_max_step_chars,
-                "max_step_tokens": args.state_max_step_tokens,
-                "regex_pattern": args.state_regex_pattern,
-                "state_tokenizer": state_segmenter.config.tokenizer_name_or_path,
-                "allow_regex_split": not args.disable_state_regex_split,
-            },
-        },
-    }
-    summary_json.parent.mkdir(parents=True, exist_ok=True)
-    summary_json.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    summary = build_run_summary(
+        args=args,
+        summary_json=summary_json,
+        step_max_new_tokens=step_max_new_tokens,
+        rollout_max_new_tokens=rollout_max_new_tokens,
+        state_segmenter=state_segmenter,
+        input_problem_count=input_problem_count,
+        skipped_existing_count=skipped_existing_count,
+        newly_processed_count=newly_processed_count,
+        output_problem_count=output_problem_count,
+        run_status="completed",
+    )
+    write_summary_json(summary_json, summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
 
